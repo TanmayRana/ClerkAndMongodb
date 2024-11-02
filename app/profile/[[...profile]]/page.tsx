@@ -5,7 +5,7 @@ import React from "react";
 import { redirect } from "next/navigation";
 
 const Profile = async () => {
-  const { userId } = await auth();
+  const { userId } = auth();
 
   //   console.log(userId);
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const Navbar = async () => {
-  const { userId } = await auth();
+  const { userId } = auth();
   return (
     <div className="bg-cyan-950 rounded-b-xl">
       <ul className="flex justify-between py-4 px-6">
