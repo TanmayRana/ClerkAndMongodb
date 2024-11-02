@@ -87,8 +87,8 @@ export async function POST(req: Request) {
       //   },
       // });
 
-      await clerkClient.users.updateUserMetadata(id, {
-        privateMetadata: {
+      await clerkClient.prototype.updateUserMetadata(id, {
+        publicMetadata: {
           userId: newUser._id,
         },
       });
