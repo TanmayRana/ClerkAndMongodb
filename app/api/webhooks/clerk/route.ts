@@ -3,12 +3,14 @@ import { Webhook } from "svix";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { createUser } from "@/actions/user.action";
 import { NextResponse } from "next/server";
-import { clerkClient } from "@clerk/nextjs/server";
+// import { clerkClient } from "@clerk/nextjs/server";
 // import User from "@/modals/user.modal";
 import { headers } from "next/headers";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
+  const { clerkClient } = await import("@clerk/nextjs/server");
+
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
@@ -79,8 +81,14 @@ export async function POST(req: Request) {
     console.log("newUser=", newUser);
 
     if (newUser) {
+      // await clerkClient.users.updateUserMetadata(id, {
+      //   publicMetadata: {
+      //     userId: newUser._id,
+      //   },
+      // });
+
       await clerkClient.users.updateUserMetadata(id, {
-        publicMetadata: {
+        privateMetadata: {
           userId: newUser._id,
         },
       });
