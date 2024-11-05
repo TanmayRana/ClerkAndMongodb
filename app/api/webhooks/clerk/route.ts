@@ -6,7 +6,8 @@ import { NextResponse } from "next/server";
 // import { clerkClient } from "@clerk/nextjs/server";
 // import User from "@/modals/user.modal";
 import { headers } from "next/headers";
-import { clerkClient } from "@clerk/nextjs/server";
+// import { clerkClient } from "@clerk/nextjs/server";
+import { clerkClient } from "@clerk/clerk-sdk-node";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
@@ -82,12 +83,6 @@ export async function POST(req: Request) {
     console.log("newUser=", newUser);
 
     if (newUser) {
-      // await clerkClient.users.updateUserMetadata(id, {
-      //   publicMetadata: {
-      //     userId: newUser._id,
-      //   },
-      // });
-
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: newUser._id,
